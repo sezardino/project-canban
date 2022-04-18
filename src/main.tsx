@@ -7,5 +7,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   // eslint-disable-line @typescript-eslint/no-non-null-assertion
   <React.StrictMode>
     <App />
-  </React.StrictMode>
+  </React.StrictMode>,
 );
