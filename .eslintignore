@@ -1,6 +1,7 @@
 /dist
 *.scss
 *.css
+*.html
 /.next
 /node_modules
 /build
