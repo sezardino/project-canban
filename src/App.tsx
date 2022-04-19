@@ -1,4 +1,4 @@
-import { Button, Textarea, Input } from '@components/atoms';
+import { Button, Textarea, Input, Tooltip } from '@components/atoms';
 
 function App(): JSX.Element {
   return (
@@ -138,6 +138,23 @@ function App(): JSX.Element {
         <Input label="Default Input" placeholder="Type Something Nice" />
         <Input disabled label="Disabled Input" placeholder="Type Something Nice" />
         <Input label="Input With Helper Text" helperText="helper text" placeholder="Type Something Nice" />
+      </div>
+      <div>
+        <h2>Tooltips</h2>
+        <div className="mt-10 flex gap-8">
+          <Tooltip label="Tooltip Content">
+            <Button>Tooltip Top</Button>
+          </Tooltip>
+          <Tooltip position="left" label="Tooltip Content">
+            <Input label="Default Input" placeholder="Type Something Nice" />
+          </Tooltip>
+          <Tooltip position="bottom" label="Tooltip Content">
+            <Button>Tooltip Bottom</Button>
+          </Tooltip>
+          <Tooltip position="right" label="Tooltip Content">
+            <Button>Tooltip Right</Button>
+          </Tooltip>
+        </div>
       </div>
     </main>
   );
