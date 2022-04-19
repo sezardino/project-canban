@@ -9,7 +9,6 @@ export const Textarea: React.FC<TextareaProps> = (props) => {
       <textarea
         {...rest}
         className="
-        form-control
         block
         w-full
         h-48

@@ -1,4 +1,4 @@
-import { ButtonProps } from './types';
+import { ButtonProps } from './props';
 import cn from 'classnames';
 import { Link, LinkProps } from 'react-router-dom';
 import { HTMLProps } from 'react';

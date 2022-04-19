@@ -1,8 +1,8 @@
-import { Button, Textarea } from '@components/atoms';
+import { Button, Textarea, Input } from '@components/atoms';
 
 function App(): JSX.Element {
   return (
-    <main>
+    <main className="py-20 container mx-auto grid content-start gap-8">
       <div>
         <h2>buttons</h2>
         <div>
@@ -132,6 +132,12 @@ function App(): JSX.Element {
       <div>
         <h2>Textarea</h2>
         <Textarea label="textarea" placeholder="Type Something Nice" />
+      </div>
+      <div>
+        <h2>Inputs</h2>
+        <Input label="Default Input" placeholder="Type Something Nice" />
+        <Input disabled label="Disabled Input" placeholder="Type Something Nice" />
+        <Input label="Input With Helper Text" helperText="helper text" placeholder="Type Something Nice" />
       </div>
     </main>
   );

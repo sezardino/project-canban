@@ -10,6 +10,19 @@ module.exports = {
         danger: colors.red,
         warning: colors.yellow,
       }),
+      animation: {
+        show: 'show 0.8s linear',
+      },
+      keyframes: {
+        show: {
+          from: {
+            opacity: '0',
+          },
+          to: {
+            opacity: '1',
+          },
+        },
+      },
     },
   },
   plugins: [],
