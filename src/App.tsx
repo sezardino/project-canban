@@ -1,4 +1,4 @@
-import { Button } from '@components/atoms';
+import { Button, Textarea } from '@components/atoms';
 
 function App(): JSX.Element {
   return (
@@ -128,6 +128,10 @@ function App(): JSX.Element {
             </Button>
           </div>
         </div>
+      </div>
+      <div>
+        <h2>Textarea</h2>
+        <Textarea label="textarea" placeholder="Type Something Nice" />
       </div>
     </main>
   );
