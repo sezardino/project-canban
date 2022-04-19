@@ -15,7 +15,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
   } = props;
 
   const commonStyles =
-    'inline-block font-medium text-xs leading-tight uppercase rounded shadow-md focus:outline-none focus:ring-0 transition duration-150 ease-in-out disabled:pointer-events-none disabled:opacity-60';
+    'inline-flex items-center gap-1 font-medium text-xs leading-tight uppercase rounded shadow-md focus:outline-none focus:ring-0 transition duration-150 ease-in-out disabled:pointer-events-none disabled:opacity-60';
 
   const roundedStyles = 'rounded-full';
 
@@ -38,6 +38,15 @@ export const Button: React.FC<ButtonProps> = (props) => {
     dark: 'text-tertiary-800',
   };
 
+  if ('to' in props) {
+    const typedRest = rest as LinkProps;
+    return (
+      <Link {...typedRest} to={props.to}>
+        {children}
+      </Link>
+    );
+  }
+
   const colorStyles = {
     primary: 'bg-primary-600 text-white hover:bg-primary-700 focus:bg-primary-700 active:bg-primary-800',
     secondary: 'bg-secondary-600 text-white hover:bg-secondary-700 focus:bg-secondary-700 active:bg-secondary-800',
@@ -48,15 +57,6 @@ export const Button: React.FC<ButtonProps> = (props) => {
     light: 'bg-tertiary-200 text-tertiary-700 hover:bg-tertiary-300 focus:bg-tertiary-300 active:bg-tertiary-400',
     dark: 'bg-tertiary-800 text-white hover:bg-tertiary-900 focus:bg-tertiary-900 active:bg-tertiary-900',
   };
-
-  if ('to' in props) {
-    const typedRest = rest as LinkProps;
-    return (
-      <Link {...typedRest} to={props.to}>
-        {children}
-      </Link>
-    );
-  }
 
   const typedRest = rest as HTMLProps<HTMLButtonElement>;
 

@@ -1,4 +1,4 @@
-import { Button, Textarea, Input, Tooltip } from '@components/atoms';
+import { Button, Textarea, Input, Tooltip, Badge } from '@components/atoms';
 
 function App(): JSX.Element {
   return (
@@ -154,6 +154,32 @@ function App(): JSX.Element {
           <Tooltip position="right" label="Tooltip Content">
             <Button>Tooltip Right</Button>
           </Tooltip>
+        </div>
+      </div>
+      <div>
+        <h2>Badges</h2>
+        <div className="mt-10">
+          <h1 className="text-9xl">
+            Lol <Badge>lol</Badge>
+          </h1>
+          <h2 className="text-7xl">
+            Lol <Badge>lol</Badge>
+          </h2>
+          <h3 className="text-5xl">
+            Lol <Badge>lol</Badge>
+          </h3>
+          <h4 className="text-3xl">
+            Lol <Badge>lol</Badge>
+          </h4>
+          <h5 className="text-xl">
+            Lol <Badge>lol</Badge>
+          </h5>
+          <h6 className="text-xs">
+            Lol <Badge>lol</Badge>
+          </h6>
+          <Button color="danger">
+            Button <Badge color="info">lol</Badge>
+          </Button>
         </div>
       </div>
     </main>
