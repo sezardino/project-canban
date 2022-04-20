@@ -1,9 +1,9 @@
 import cn from 'classnames';
 import { HeadingProps } from './props';
-import { fontColors } from '@/common/consts';
+import { fontColors } from '@/common';
 
 export const Heading: React.FC<HeadingProps> = (props) => {
-  const { type: Type = 'h2', styledAs = Type, color = 'dark', className, ...rest } = props;
+  const { type: HeadingLevel = 'h2', styledAs = HeadingLevel, color = 'dark', className, children, ...rest } = props;
 
   const defaultStyles = 'font-medium leading-tight';
 
@@ -16,5 +16,9 @@ export const Heading: React.FC<HeadingProps> = (props) => {
     h6: 'text-2xl',
   };
 
-  return <Type {...rest} className={cn(defaultStyles, styles[styledAs], fontColors[color], className)}></Type>;
+  return (
+    <HeadingLevel {...rest} className={cn(defaultStyles, styles[styledAs], fontColors[color], className)}>
+      {children}
+    </HeadingLevel>
+  );
 };
