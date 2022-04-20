@@ -1,4 +1,4 @@
-import { Button, Textarea, Input, Tooltip, Badge } from '@components/atoms';
+import { Button, Textarea, Input, Tooltip, Badge, Heading } from '@components/atoms';
 
 function App(): JSX.Element {
   return (
@@ -180,6 +180,27 @@ function App(): JSX.Element {
           <Button color="danger">
             Button <Badge color="info">lol</Badge>
           </Button>
+        </div>
+      </div>
+      <div>
+        <h2>Headings</h2>
+        <div className="mt-10">
+          <Heading type="h1">H1</Heading>
+          <Heading color="danger" type="h2">
+            H2
+          </Heading>
+          <Heading color="info" type="h3">
+            H3
+          </Heading>
+          <Heading color="light" type="h4">
+            H4
+          </Heading>
+          <Heading color="primary" type="h5">
+            H5
+          </Heading>
+          <Heading color="secondary" type="h6">
+            H6
+          </Heading>
         </div>
       </div>
     </main>
