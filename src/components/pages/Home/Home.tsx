@@ -1,8 +1,29 @@
-import { Button, Textarea, Input, Tooltip, Badge, Heading, Text } from '@/components';
+import { Toast } from '@/common';
+import { Button, Textarea, Input, Tooltip, Badge, Heading, Text } from '@/components/atoms';
+import { Toast as ToastComponent } from '@/components/molecules/Toast/Toast';
 
-function App(): JSX.Element {
+export const Home: React.FC = () => {
+  const toasts: Toast[] = [
+    {
+      type: 'success',
+      message: 'Success message',
+    },
+    {
+      type: 'error',
+      message: 'Error message',
+    },
+    {
+      type: 'warning',
+      message: 'Warning message',
+    },
+    {
+      type: 'info',
+      message: 'Info message',
+    },
+  ];
+
   return (
-    <main className="py-20 container mx-auto grid content-start gap-8">
+    <>
       <div>
         <h2>buttons</h2>
         <div>
@@ -282,8 +303,14 @@ function App(): JSX.Element {
           </Text>
         </div>
       </div>
-    </main>
+      <div>
+        <h2>Toasts</h2>
+        <div className="mt-10 grid grid-cols-2 gap-8">
+          {toasts.map((toast, index) => (
+            <ToastComponent key={index} {...toast} />
+          ))}
+        </div>
+      </div>
+    </>
   );
-}
-
-export default App;
+};
