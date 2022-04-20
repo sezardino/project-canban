@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
 import { LinkProps } from 'react-router-dom';
 
 interface CommonButtonProps {
-  size?: 'sm' | 'md' | 'lg';
+  isLink?: boolean;
   isFullWidth?: boolean;
   isRounded?: boolean;
   isOutlined?: boolean;
