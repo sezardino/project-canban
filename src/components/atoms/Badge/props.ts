@@ -1,6 +1,7 @@
 import { HTMLProps } from 'react';
+import { BaseColors } from '@/common';
 
 export interface BadgeProps extends HTMLProps<HTMLSpanElement> {
-  color?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark';
+  color?: BaseColors;
   isPill?: boolean;
 }
