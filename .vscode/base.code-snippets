@@ -1,4 +1,16 @@
 {
+  "New Base Page": {
+    "prefix": "page",
+    "scope": "javascriptreact,typescriptreact",
+    "body": [
+      "const ${TM_FILENAME_BASE} = () => {",
+      "  return <h1>${TM_FILENAME_BASE}</h1>;",
+      "};",
+      "",
+      "export default ${TM_FILENAME_BASE};",
+      ""
+    ]
+  },
   "New Base Component": {
     "prefix": "com",
     "scope": "javascriptreact,typescriptreact",
