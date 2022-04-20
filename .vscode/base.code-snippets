@@ -17,5 +17,30 @@
     "scope": "typescript",
     "prefix": "pr",
     "body": ["import { HTMLProps } from 'react';", "", "export interface ${1}Props extends HTMLProps<${2}> {${3}}", ""]
+  },
+  "New Base Story": {
+    "scope": "javascriptreact,typescriptreact",
+    "prefix": "st",
+    "body": [
+      "import { ComponentMeta, ComponentStory } from '@storybook/react';",
+      "",
+      "import { ${1} } from './${1}';",
+      "",
+      "export default {",
+      "  title: 'Base/${1}',",
+      "  component: ${1},",
+      "  args: {",
+      "    ${2}",
+      "  },",
+      "  argTypes: {",
+      "    ${3}",
+      "  },",
+      "} as ComponentMeta<typeof ${1}>;",
+      "",
+      "const Template: ComponentStory<typeof ${1}> = (args) => <${1} {...args}>${1} Component</${1}>;",
+      "",
+      "export const Default = Template.bind({});",
+      "Default.args = {${5}};"
+    ]
   }
 }
