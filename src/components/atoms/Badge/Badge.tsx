@@ -1,6 +1,6 @@
-import { BadgeProps } from './props';
 import cn from 'classnames';
-import { mainElementsStyles } from '@/common/consts';
+import { BadgeProps } from './props';
+import { mainElementsStyles } from '@/common';
 
 export const Badge: React.FC<BadgeProps> = (props) => {
   const { color = 'primary', isPill = false, className, children, ...rest } = props;

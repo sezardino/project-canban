@@ -1,8 +1,8 @@
+import { HTMLProps } from 'react';
+import { Link, LinkProps } from 'react-router-dom';
 import { ButtonProps } from './props';
 import cn from 'classnames';
-import { Link, LinkProps } from 'react-router-dom';
-import { HTMLProps } from 'react';
-import { fontColors, mainElementsStyles } from '@/common/consts';
+import { fontColors, mainElementsStyles } from '@/common';
 
 export const Button: React.FC<ButtonProps> = (props) => {
   const {
