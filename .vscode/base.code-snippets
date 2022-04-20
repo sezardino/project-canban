@@ -1,0 +1,21 @@
+{
+  "New Base Component": {
+    "prefix": "com",
+    "scope": "javascriptreact,typescriptreact",
+    "body": [
+      "import cn from 'classnames';",
+      "import { ${TM_FILENAME_BASE}Props } from './props';",
+      "",
+      "export const ${TM_FILENAME_BASE}: React.FC<${TM_FILENAME_BASE}Props> = (props) => {",
+      "  const { className, children, ...rest } = props;",
+      "",
+      "  return <div {...rest} className={cn(className)}>$0</div>;",
+      "};"
+    ]
+  },
+  "New Base Props": {
+    "scope": "typescript",
+    "prefix": "pr",
+    "body": ["import { HTMLProps } from 'react';", "", "export interface ${1}Props extends HTMLProps<${2}> {${3}}", ""]
+  }
+}
