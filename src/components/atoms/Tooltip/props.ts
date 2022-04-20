@@ -1,7 +1,8 @@
 import { HTMLProps } from 'react';
+import { BaseOrientation } from '@/common';
 
 export interface TooltipProps extends HTMLProps<HTMLSpanElement> {
-  position?: 'top' | 'bottom' | 'left' | 'right';
+  position?: BaseOrientation;
   noInteraction?: boolean;
   label: string;
 }

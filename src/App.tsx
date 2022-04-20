@@ -1,4 +1,4 @@
-import { Button, Textarea, Input, Tooltip, Badge, Heading } from '@components/atoms';
+import { Button, Textarea, Input, Tooltip, Badge, Heading } from '@/components';
 
 function App(): JSX.Element {
   return (
@@ -124,6 +124,33 @@ function App(): JSX.Element {
               Button
             </Button>
             <Button isRounded isOutlined color="warning">
+              Button
+            </Button>
+          </div>
+        </div>
+        <div>
+          <h3>Link</h3>
+          <div className="flex gap-5">
+            <Button isLink>Button</Button>
+            <Button isLink color="danger">
+              Button
+            </Button>
+            <Button isLink color="dark">
+              Button
+            </Button>
+            <Button isLink color="info">
+              Button
+            </Button>
+            <Button isLink color="light">
+              Button
+            </Button>
+            <Button isLink color="secondary">
+              Button
+            </Button>
+            <Button isLink color="success">
+              Button
+            </Button>
+            <Button isLink color="warning">
               Button
             </Button>
           </div>

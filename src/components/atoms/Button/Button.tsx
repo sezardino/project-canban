@@ -2,7 +2,7 @@ import { HTMLProps } from 'react';
 import { Link, LinkProps } from 'react-router-dom';
 import cn from 'classnames';
 
-import { buttonInteractionColors, fontColors, linkInteractionColors, mainElementsStyles } from '@/common';
+import { mainElIntStyles, fontStyles, linkIntStyles, mainElStyles } from '@/common';
 
 import { ButtonProps } from './props';
 
@@ -28,18 +28,18 @@ export const Button: React.FC<ButtonProps> = (props) => {
     lg: 'px-7 py-3',
   };
 
-  const fontStyles = fontColors[color];
-  const interactionColors = isLink ? linkInteractionColors[color] : buttonInteractionColors[color];
+  const fonts = fontStyles[color];
+  const interactionColors = isLink ? linkIntStyles[color] : mainElIntStyles[color];
 
   const buttonStyles = cn(sizesStyles[size], commonButtonStyles, {
-    [mainElementsStyles[color]]: !isOutlined,
+    [mainElStyles[color]]: !isOutlined,
     [interactionColors]: !isOutlined,
     [defaultOutlinedStyles]: isOutlined,
-    [fontStyles]: isOutlined,
+    [fonts]: isOutlined,
     ['w-full']: isFullWidth,
     ['rounded-full']: isRounded,
   });
-  const linkStyles = cn(fontStyles);
+  const linkStyles = cn(fonts);
   const classes = cn({
     [buttonStyles]: !isLink,
     [linkStyles]: isLink,
