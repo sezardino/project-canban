@@ -1,6 +1,27 @@
+import { Toast } from '@/common';
 import { Button, Textarea, Input, Tooltip, Badge, Heading, Text } from '@/components/atoms';
+import { Toast as ToastComponent } from '@/components/molecules/Toast/Toast';
 
 export const Home: React.FC = () => {
+  const toasts: Toast[] = [
+    {
+      type: 'success',
+      message: 'Success message',
+    },
+    {
+      type: 'error',
+      message: 'Error message',
+    },
+    {
+      type: 'warning',
+      message: 'Warning message',
+    },
+    {
+      type: 'info',
+      message: 'Info message',
+    },
+  ];
+
   return (
     <>
       <div>
@@ -280,6 +301,14 @@ export const Home: React.FC = () => {
             placeat nam illum quidem sunt earum excepturi vero numquam dolor neque! Voluptatum beatae numquam vitae eum
             rerum.
           </Text>
+        </div>
+      </div>
+      <div>
+        <h2>Toasts</h2>
+        <div className="mt-10 grid grid-cols-2 gap-8">
+          {toasts.map((toast, index) => (
+            <ToastComponent key={index} {...toast} />
+          ))}
         </div>
       </div>
     </>
