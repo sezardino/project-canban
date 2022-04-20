@@ -33,9 +33,9 @@ export default {
     },
     color: {
       name: 'color',
-      default: 'h2',
+      default: 'dark',
       type: 'string',
-      description: 'The color of the button',
+      description: 'The color of the heading',
       options: ['primary', 'danger', 'success', 'warning', 'info', 'light', 'dark'],
       control: {
         type: 'inline-radio',

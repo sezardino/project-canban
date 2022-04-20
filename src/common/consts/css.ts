@@ -1,4 +1,14 @@
-export const fontStyles = {
+import { BaseColors, FontWeight } from '../types';
+
+export const fontWeightStyles: Record<FontWeight, string> = {
+  light: 'font-light',
+  normal: 'font-normal',
+  medium: 'font-medium',
+  semibold: 'font-semibold',
+  bold: 'font-bold',
+};
+
+export const fontStyles: Record<BaseColors, string> = {
   primary: 'text-primary-600',
   secondary: 'text-secondary-600',
   success: 'text-success-500',
@@ -9,7 +19,7 @@ export const fontStyles = {
   dark: 'text-tertiary-800',
 };
 
-export const linkIntStyles = {
+export const linkIntStyles: Record<BaseColors, string> = {
   primary: 'hover:text-primary-700 focus:text-primary-700 active:text-primary-800 visited:text-primary-500',
   secondary: 'hover:text-secondary-700 focus:text-secondary-700 active:text-secondary-800 visited:text-secondary-500',
   success: 'hover:text-success-600 focus:text-success-600 active:text-success-700 visited:text-success-400',
@@ -20,7 +30,7 @@ export const linkIntStyles = {
   dark: 'hover:text-tertiary-900 focus:text-tertiary-900 active:text-tertiary-900 visited:text-tertiary-700',
 };
 
-export const mainElIntStyles = {
+export const mainElIntStyles: Record<BaseColors, string> = {
   primary: 'hover:bg-primary-700 focus:bg-primary-700 active:bg-primary-800',
   secondary: 'hover:bg-secondary-700 focus:bg-secondary-700 active:bg-secondary-800',
   success: 'hover:bg-success-600 focus:bg-success-600 active:bg-success-700',
@@ -31,7 +41,7 @@ export const mainElIntStyles = {
   dark: 'hover:bg-tertiary-900 focus:bg-tertiary-900 active:bg-tertiary-900',
 };
 
-export const mainElStyles = {
+export const mainElStyles: Record<BaseColors, string> = {
   primary: 'bg-primary-600 text-white',
   secondary: 'bg-secondary-600 text-white',
   success: 'bg-success-500 text-white',
