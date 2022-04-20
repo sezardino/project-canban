@@ -9,12 +9,10 @@ export const ToastsWrapper: React.FC<ToastsWrapperProps> = (props) => {
   const { toasts } = useUI();
 
   return (
-    <Portal containerId="toasts" className={className}>
-      <div {...rest} className={cn('grid gap-4 z-10')}>
-        {toasts.map((toast, index) => (
-          <Toast key={index} {...toast} className="animate-show" />
-        ))}
-      </div>
+    <Portal {...rest} containerId="toasts" className={cn('grid content-start gap-4 z-10', className)}>
+      {toasts.map((toast, index) => (
+        <Toast key={index} {...toast} className="animate-show" />
+      ))}
     </Portal>
   );
 };
