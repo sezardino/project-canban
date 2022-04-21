@@ -13,6 +13,8 @@ module.exports = {
       }),
       animation: {
         show: 'show 0.8s linear',
+        'bounce-200': 'bounce 1s infinite 200ms',
+        'bounce-400': 'bounce 1s infinite 400ms',
       },
       keyframes: {
         show: {
