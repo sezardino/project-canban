@@ -6,3 +6,4 @@ export * from './Badge/Badge';
 export * from './Heading/Heading';
 export * from './Text/Text';
 export * from './Spinner/Spinner';
+export * from './Modal/Modal';

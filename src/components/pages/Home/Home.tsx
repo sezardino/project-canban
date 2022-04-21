@@ -1,8 +1,11 @@
 import { Toast } from '@/common';
-import { Button, Textarea, Input, Tooltip, Badge, Heading, Text, Spinner } from '@/components/atoms';
+import { Button, Textarea, Input, Tooltip, Badge, Heading, Text, Spinner, Modal } from '@/components/atoms';
 import { Toast as ToastComponent } from '@/components/molecules/Toast/Toast';
 
+import { useState } from 'react';
+
 export const Home: React.FC = () => {
+  const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const toasts: Toast[] = [
     {
       type: 'success',
@@ -25,6 +28,10 @@ export const Home: React.FC = () => {
   return (
     <>
       <div>
+        <Button onClick={() => setModalOpen(true)}>Open modal</Button>
+        <Modal isOpen={isModalOpen} closeHandler={() => setModalOpen(false)}>
+          lol
+        </Modal>
         <h2>buttons</h2>
         <div>
           <h3>Outlined</h3>

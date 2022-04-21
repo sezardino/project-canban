@@ -11,20 +11,14 @@ interface UsePortal {
 }
 
 export const usePortal = (containerId: string): UsePortal => {
-  const portalWrapper = useRef(document.createElement('div'));
-  portalWrapper.current.setAttribute('id', containerId);
+  const portalWrapper = useRef(document.getElementById(containerId) as HTMLDivElement);
 
   useEffect(() => {
-    document.body.appendChild(portalWrapper.current);
-
-    return () => {
-      document.body.removeChild(portalWrapper.current);
-    };
-  }, []);
+    console.log(portalWrapper.current);
+  });
 
   const Portal: React.FC<PortalProps> = useCallback((props) => {
-    const { children, className } = props;
-    portalWrapper.current.setAttribute('class', className || '');
+    const { children } = props;
 
     return createPortal(children, portalWrapper.current);
   }, []);
