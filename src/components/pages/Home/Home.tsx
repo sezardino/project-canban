@@ -1,5 +1,5 @@
 import { Toast } from '@/common';
-import { Button, Textarea, Input, Tooltip, Badge, Heading, Text } from '@/components/atoms';
+import { Button, Textarea, Input, Tooltip, Badge, Heading, Text, Spinner } from '@/components/atoms';
 import { Toast as ToastComponent } from '@/components/molecules/Toast/Toast';
 
 export const Home: React.FC = () => {
@@ -309,6 +309,14 @@ export const Home: React.FC = () => {
           {toasts.map((toast, index) => (
             <ToastComponent key={index} {...toast} />
           ))}
+        </div>
+      </div>
+      <div>
+        <h2>Spinners</h2>
+        <div className="mt-10 grid grid-cols-2 gap-8">
+          <Spinner />
+          <Spinner type="circle" size="xl" />
+          <Spinner type="grow" size="xl" />
         </div>
       </div>
     </>
