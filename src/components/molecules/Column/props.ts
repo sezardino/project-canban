@@ -1,7 +1,8 @@
+import { CardData } from '@/common';
 import { HTMLProps } from 'react';
 
-export interface ColumnProps<T> extends Omit<HTMLProps<HTMLDivElement>, 'children'> {
-  items: (T & { id: string })[];
+export interface ColumnProps extends Omit<HTMLProps<HTMLDivElement>, 'children'> {
+  items: CardData[];
   label: string;
-  children: (slide: T & { id: string }) => JSX.Element;
+  children: (card: CardData) => JSX.Element;
 }

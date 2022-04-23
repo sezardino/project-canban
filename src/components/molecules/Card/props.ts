@@ -1,4 +1,6 @@
-import { Card } from '@/common';
+import { CardData } from '@/common';
 import { LinkProps } from 'react-router-dom';
 
-export type CardProps = Partial<LinkProps> & Card;
+export interface CardProps extends Partial<LinkProps> {
+  card: CardData;
+}
