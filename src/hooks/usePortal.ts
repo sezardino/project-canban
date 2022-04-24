@@ -13,10 +13,6 @@ interface UsePortal {
 export const usePortal = (containerId: string): UsePortal => {
   const portalWrapper = useRef(document.getElementById(containerId) as HTMLDivElement);
 
-  useEffect(() => {
-    console.log(portalWrapper.current);
-  });
-
   const Portal: React.FC<PortalProps> = useCallback((props) => {
     const { children } = props;
 

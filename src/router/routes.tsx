@@ -1,11 +1,11 @@
 import { lazy } from 'react';
-import { DefaultLayout } from '@/components/layouts';
+import { DefaultLayout, DemoLayout } from '@/components/layouts';
 
 import Home from '@/pages/index/Home';
-import { Outlet, RouteObject } from 'react-router-dom';
+import { RouteObject } from 'react-router-dom';
 
 const NotFound = lazy(() => import('@/pages/index/NotFound'));
-const Board = lazy(() => import('@/pages/demo/Board'));
+const Kanban = lazy(() => import('@/pages/demo/Kanban'));
 
 export const routes: RouteObject[] = [
   {
@@ -16,5 +16,5 @@ export const routes: RouteObject[] = [
       { path: '*', element: <NotFound /> },
     ],
   },
-  { path: '/demo', element: <Outlet />, children: [{ path: 'board', element: <Board /> }] },
+  { path: '/demo', element: <DemoLayout />, children: [{ path: 'kanban', element: <Kanban /> }] },
 ];

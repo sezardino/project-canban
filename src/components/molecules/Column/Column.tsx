@@ -3,19 +3,23 @@ import cn from 'classnames';
 import React from 'react';
 import { ColumnProps } from './props';
 
-export const Column = <T extends unknown>(props: ColumnProps<T>): JSX.Element => {
+export const Column: React.FC<ColumnProps> = (props) => {
   const { className, label, items, children, ...rest } = props;
 
   return (
-    <div {...rest} className={cn('grid items-start gap-2 max-w-xs bg-slate-200 p-2 rounded-md', className)}>
-      <header>
+    <div {...rest} className={cn('h-full', className)}>
+      <header className="bg-gray-100 p-4">
         <Heading type="h3" styledAs="h6">
           {label}
         </Heading>
       </header>
-      {items.map((item) => (
-        <React.Fragment key={item.id}>{children(item)}</React.Fragment>
-      ))}
+      <ul className="flex flex-col gap-4 p-1 h-full">
+        {items.map((task) => (
+          <li key={task.id} className="cursor-grab">
+            {children(task)}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
