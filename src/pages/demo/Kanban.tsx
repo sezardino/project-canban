@@ -1,78 +1,69 @@
-import { CardData, Status } from '@/common';
-import { cardsArr, statusesArr } from '@/common/mock';
-import { KanbanTemplate } from '@/components/pages/Kanban/Kanban';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo } from 'react';
+
+import { cardsArr, columnsArr } from '@/common';
+import { Button, KanbanBoard } from '@/components';
+import { storeActions, useAppDispatch, useAppSelector } from '@/store';
 
 const KanbanPage = () => {
-  const [statuses, setStatuses] = useState<Status[]>(statusesArr);
-  const [cards, setCards] = useState<CardData[]>(cardsArr);
+  const { cards, columns } = useAppSelector((state) => state.demoReducer);
+  const dispatch = useAppDispatch();
+  const {
+    demoActions: { setCards, setColumns, addCard, addColumn },
+  } = storeActions;
 
-  const addColumn = () => {
-    const name = prompt('Enter new board name', '');
-    if (!name) {
+  useEffect(() => {
+    dispatch(setCards(cardsArr));
+    dispatch(setColumns(columnsArr));
+  }, []);
+
+  const addColumnHandler = () => {
+    const label = prompt('Enter new board name', '');
+    if (!label) {
       return alert('You must enter name');
     }
 
-    if (statuses.find((board) => board.title === name)) {
+    if (columns.find((column) => column.label === label)) {
       return alert('Board with this name already exists');
     }
 
-    const newColumn: Status = {
-      id: name.replace(' ', '-').toLowerCase(),
-      label: name,
-    };
+    const id = label.replace(' ', '-').toLowerCase();
 
-    setStatuses((prevStatuses) => [...prevStatuses, newColumn]);
+    if (columns.find((column) => column.id === id)) {
+      return alert('Board with this name(id) already exists');
+    }
+
+    dispatch(addColumn({ label, id }));
   };
 
-  const addTask = () => {
+  const addCardHandler = () => {
     const title = prompt('Enter new board title', '');
+
     if (!title) {
       return alert('You must enter title');
     }
 
-    const lastTask = cards.pop();
-
-    const newTask: CardData = {
-      id: Date.now().toString(),
-      title,
-      status: 'todo',
-      order: lastTask ? lastTask.order + 1 : 1,
-    };
-
-    setCards((prevCards) => [...prevCards, newTask]);
+    dispatch(addCard({ title }));
   };
 
   const kanbanContent = useMemo(() => {
-    return statuses.map((column) => ({
+    return columns.map((column) => ({
       ...column,
-      items: cards.filter((card) => card.status === column.id).sort((a, b) => a.order - b.order),
+      items: cards.filter((card) => card.column === column.id).sort((a, b) => a.order - b.order),
     }));
-  }, [cards, statuses]);
+  }, [cards, columns]);
 
-  const changeStatus = (id: string, status: string) => {
-    setCards((prevCards) =>
-      prevCards.map((task) => {
-        if (task.id === id) {
-          return { ...task, status };
-        }
-        return task;
-      }),
-    );
-  };
-
-  const changeOrder = (id: string, order: number) => {
-    setCards((prevCards) =>
-      prevCards.map((task) => {
-        if (task.id === id) {
-          return { ...task, order };
-        }
-        return task;
-      }),
-    );
-  };
-
-  return <KanbanTemplate columns={kanbanContent} changeOrder={changeOrder} changeStatus={changeStatus} />;
+  return (
+    <div className="h-full flex flex-col">
+      <header className="flex justify-between py-10 px-10">
+        <h1 className="text-4xl">Kanban Board</h1>
+        <div className="flex gap-2">
+          <Button onClick={addCardHandler}>Add New Task</Button>
+          <Button onClick={addColumnHandler}>Add New Column</Button>
+        </div>
+      </header>
+      <KanbanBoard columns={kanbanContent} className="px-10 h-full max-h-full overflow-auto" />
+    </div>
+  );
 };
 
 export default KanbanPage;

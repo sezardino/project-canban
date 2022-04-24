@@ -8,12 +8,12 @@ export const Column: React.FC<ColumnProps> = (props) => {
 
   return (
     <div {...rest} className={cn('h-full', className)}>
-      <header className="bg-gray-100 p-4">
+      <header className="bg-gray-100 p-4 z-10 sticky top-0 shadow-md">
         <Heading type="h3" styledAs="h6">
           {label}
         </Heading>
       </header>
-      <ul className="flex flex-col gap-4 p-1 h-full">
+      <ul className="flex flex-col gap-2 p-1 h-full pt-2">
         {items.map((task) => (
           <li key={task.id} className="cursor-grab">
             {children(task)}
