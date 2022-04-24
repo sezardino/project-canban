@@ -1,4 +1,5 @@
 import { CardData } from '@/common';
+import { Button } from '@/components/atoms';
 import { Card, Column } from '@/components/molecules';
 
 import { KanbanTemplateProps } from './props';
@@ -63,29 +64,38 @@ export const KanbanTemplate: React.FC<KanbanTemplateProps> = (props) => {
     changeStatus(task.id, boardId);
   };
   return (
-    <ul {...rest} className="flex gap-5 mt-5">
-      {columns.map((column) => (
-        <li key={column.id} className="min-w-[320px] bg-gray-200 max-h-screen h-screen rounded-lg shadow-lg">
-          <Column
-            {...column}
-            onDragOver={(evt) => evt.preventDefault()}
-            onDrop={(evt) => onColumnDrop(evt, column.id)}
-            onDragEnter={columnDragEnter}
-            onDragLeave={columnDragLeave}
-          >
-            {(card) => (
-              <Card
-                card={card}
-                className="relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-1"
-                data-card
-                draggable
-                onDragStart={(evt) => cardDragStart(evt, card)}
-                onDrop={(evt) => onCardDrop(evt, card)}
-              />
-            )}
-          </Column>
-        </li>
-      ))}
-    </ul>
+    <div className="px-10">
+      <header className="flex justify-between py-10">
+        <h1 className="text-4xl">Kanban Board</h1>
+        <div className="flex gap-2">
+          <Button>Add New Task</Button>
+          <Button>Add New Column</Button>
+        </div>
+      </header>
+      <ul {...rest} className="flex gap-5">
+        {columns.map((column) => (
+          <li key={column.id} className="min-w-[320px] bg-gray-200 max-h-screen h-screen rounded-lg shadow-lg">
+            <Column
+              {...column}
+              onDragOver={(evt) => evt.preventDefault()}
+              onDrop={(evt) => onColumnDrop(evt, column.id)}
+              onDragEnter={columnDragEnter}
+              onDragLeave={columnDragLeave}
+            >
+              {(card) => (
+                <Card
+                  card={card}
+                  className="relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-1"
+                  data-card
+                  draggable
+                  onDragStart={(evt) => cardDragStart(evt, card)}
+                  onDrop={(evt) => onCardDrop(evt, card)}
+                />
+              )}
+            </Column>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
