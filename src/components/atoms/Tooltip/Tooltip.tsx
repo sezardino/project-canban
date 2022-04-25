@@ -2,7 +2,7 @@ import { TooltipProps } from './props';
 import cn from 'classnames';
 
 export const Tooltip: React.FC<TooltipProps> = (props) => {
-  const { label, position = 'top', noInteraction = false, children, className, ...rest } = props;
+  const { label, position = 'top', noInteraction = false, isActive = true, children, className, ...rest } = props;
 
   const positionStyles = {
     top: '-top-1 -translate-y-full left-1/2 -translate-x-1/2',
@@ -34,6 +34,7 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
             [`${positionStyles[position]}`]: true,
             [`${interactionClasses}`]: !noInteraction,
             ['animate-pulse']: noInteraction,
+            ['hidden']: !isActive,
           },
         )}
       >

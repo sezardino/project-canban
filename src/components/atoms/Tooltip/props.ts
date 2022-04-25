@@ -5,4 +5,5 @@ export interface TooltipProps extends HTMLProps<HTMLSpanElement> {
   position?: BaseOrientation;
   noInteraction?: boolean;
   label: string;
+  isActive?: boolean;
 }

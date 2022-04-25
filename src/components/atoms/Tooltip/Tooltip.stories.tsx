@@ -31,6 +31,11 @@ export default {
       type: 'boolean',
       description: 'Whether the tooltip should be shown on hover',
     },
+    isActive: {
+      name: 'isActive',
+      type: 'boolean',
+      description: 'tooltip visibility',
+    },
   },
 } as ComponentMeta<typeof Tooltip>;
 
