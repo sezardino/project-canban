@@ -6,8 +6,8 @@ import './styles/index.css';
 import { UIProvider } from './context';
 import { AppRouter } from './router';
 import { Provider } from 'react-redux';
-import { setupStore } from './store';
-import React from 'react';
+import React, { Suspense } from 'react';
+import { ErrorBoundary } from './components';
 
 const createWrapper = () => {
   const wrapper = document.createElement('div');
@@ -22,12 +22,16 @@ const store = setupStore();
 
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <UIProvider>
-        <BrowserRouter>
-          <AppRouter />
-        </BrowserRouter>
-      </UIProvider>
-    </Provider>
+    <ErrorBoundary>
+      <Provider store={store}>
+        <UIProvider>
+          <BrowserRouter>
+            <Suspense fallback={<h1>loading...</h1>}>
+              <AppRouter />
+            </Suspense>
+          </BrowserRouter>
+        </UIProvider>
+      </Provider>
+    </ErrorBoundary>
   </React.StrictMode>,
 );
