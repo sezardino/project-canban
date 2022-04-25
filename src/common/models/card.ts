@@ -1,17 +1,17 @@
 export interface Card {
-  status: string;
+  column: Column['id'];
   title: string;
   order: number;
   id: string;
 }
 
-export interface Status {
+export interface Column {
   id: string;
   label: string;
 }
 
-export interface ColumnWithCards extends Status {
+export interface ColumnWithCards extends Column {
   items: Card[];
 }
 
-export type CardData = Pick<Card, 'id' | 'order' | 'status' | 'title'>;
+export type CardData = Pick<Card, 'id' | 'order' | 'column' | 'title'>;

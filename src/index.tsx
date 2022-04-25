@@ -5,6 +5,9 @@ import './styles/index.css';
 
 import { UIProvider } from './context';
 import { AppRouter } from './router';
+import { Provider } from 'react-redux';
+import { setupStore } from './store';
+import React from 'react';
 
 const createWrapper = () => {
   const wrapper = document.createElement('div');
@@ -15,11 +18,16 @@ const createWrapper = () => {
 };
 
 const root = createRoot(createWrapper());
+const store = setupStore();
 
 root.render(
-  <UIProvider>
-    <BrowserRouter>
-      <AppRouter />
-    </BrowserRouter>
-  </UIProvider>,
+  <React.StrictMode>
+    <Provider store={store}>
+      <UIProvider>
+        <BrowserRouter>
+          <AppRouter />
+        </BrowserRouter>
+      </UIProvider>
+    </Provider>
+  </React.StrictMode>,
 );

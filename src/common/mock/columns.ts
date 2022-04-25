@@ -1,6 +1,6 @@
-import { Status } from '../models';
+import { Column } from '../models';
 
-export const statusesArr: Status[] = [
+export const columnsArr: Column[] = [
   {
     id: 'to-do',
     label: 'To Do',

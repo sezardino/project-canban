@@ -1,4 +1,4 @@
-import { Home as HomeTemplate } from '@/components/pages';
+import { Home as HomeTemplate } from '@/components/templates';
 
 const Home = () => {
   return <HomeTemplate />;

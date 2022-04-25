@@ -1,2 +1,2 @@
-export * from './statuses';
+export * from './columns';
 export * from './cards';

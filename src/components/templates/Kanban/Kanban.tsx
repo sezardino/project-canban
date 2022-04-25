@@ -1,15 +1,22 @@
 import { CardData } from '@/common';
 import { Button } from '@/components/atoms';
 import { Card, Column } from '@/components/molecules';
+import { storeActions } from '@/store';
+import { useAppDispatch } from '@/store/hooks';
 
 import { KanbanTemplateProps } from './props';
 
 export const KanbanTemplate: React.FC<KanbanTemplateProps> = (props) => {
-  const { columns, changeStatus, changeOrder, ...rest } = props;
+  const dispatch = useAppDispatch();
+  const {
+    demoActions: { changeCardColumn, changeCardOrder },
+  } = storeActions;
+  const { columns, ...rest } = props;
   const CARD_BG_CLASS = 'after:bg-red-500';
 
   const toggleCardBorder = (target: HTMLElement) => {
     const card = target.closest('[data-card]');
+
     if (!card) {
       return;
     }
@@ -45,24 +52,25 @@ export const KanbanTemplate: React.FC<KanbanTemplateProps> = (props) => {
       return;
     }
 
-    if (task.status !== dropTask.status) {
-      changeStatus(task.id, dropTask.status);
+    if (task.column !== dropTask.column) {
+      dispatch(changeCardColumn({ id: task.id, column: dropTask.column }));
     }
 
     const newOrder = dropTask.order + 1;
-    changeOrder(task.id, newOrder);
+    dispatch(changeCardOrder({ id: task.id, order: newOrder }));
   };
 
-  const onColumnDrop = (evt: React.DragEvent, boardId: string) => {
+  const onColumnDrop = (evt: React.DragEvent, columnId: string) => {
     evt.preventDefault();
     const task: CardData = JSON.parse(evt.dataTransfer.getData('task'));
 
-    if (task.status === boardId) {
+    if (task.column === columnId) {
       return;
     }
 
-    changeStatus(task.id, boardId);
+    dispatch(changeCardColumn({ id: task.id, column: columnId }));
   };
+
   return (
     <div className="px-10">
       <header className="flex justify-between py-10">
