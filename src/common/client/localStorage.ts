@@ -54,9 +54,7 @@ export class LocalStorage<U extends { id: string }> implements Client<U> {
 
     items.push(item);
 
-    await this.save(items);
-
-    return items;
+    return await this.save(items);
   }
 
   public async update(item: U): Promise<U> {
@@ -73,5 +71,23 @@ export class LocalStorage<U extends { id: string }> implements Client<U> {
     await this.save(items);
 
     return item;
+  }
+
+  public async delete(id: string): Promise<U> {
+    const items = await this.getAll();
+
+    const itemIndex = items.findIndex((i) => i.id === id);
+
+    if (itemIndex === -1) {
+      throw new Error('Item not found');
+    }
+
+    const neededItem = items[itemIndex];
+
+    items.splice(itemIndex, 1);
+
+    await this.save(items);
+
+    return neededItem;
   }
 }

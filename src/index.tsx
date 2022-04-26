@@ -6,6 +6,7 @@ import './styles/index.css';
 import { UIProvider } from './context';
 import { AppRouter } from './router';
 import { Provider } from 'react-redux';
+import { store } from './store';
 import React from 'react';
 import { ErrorBoundary } from './components';
 
@@ -18,7 +19,6 @@ const createWrapper = () => {
 };
 
 const root = createRoot(createWrapper());
-const store = setupStore();
 
 root.render(
   <React.StrictMode>
