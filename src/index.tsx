@@ -6,7 +6,7 @@ import './styles/index.css';
 import { UIProvider } from './context';
 import { AppRouter } from './router';
 import { Provider } from 'react-redux';
-import React, { Suspense } from 'react';
+import React from 'react';
 import { ErrorBoundary } from './components';
 
 const createWrapper = () => {
@@ -26,9 +26,7 @@ root.render(
       <Provider store={store}>
         <UIProvider>
           <BrowserRouter>
-            <Suspense fallback={<h1>loading...</h1>}>
-              <AppRouter />
-            </Suspense>
+            <AppRouter />
           </BrowserRouter>
         </UIProvider>
       </Provider>
