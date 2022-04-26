@@ -20,4 +20,4 @@ export interface ColumnWithCards extends Column {
   items: Card[];
 }
 
-export type CardData = Pick<Card, 'id' | 'order' | 'column' | 'title' | 'board'>;
+export type CardData = Pick<Card, 'id' | 'column' | 'title' | 'board'>;

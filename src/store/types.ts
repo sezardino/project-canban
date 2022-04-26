@@ -1,4 +1,4 @@
 export enum AppReducers {
   DEMO_BOARDS = 'demo/boards',
-  DEMO = 'demo',
+  DEMO_BOARD = 'demo/board',
 }

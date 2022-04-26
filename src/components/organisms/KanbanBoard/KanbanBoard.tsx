@@ -2,16 +2,13 @@ import cn from 'classnames';
 
 import { KanbanBoardProps } from './props';
 
+import { asyncActions, useAppDispatch } from '@/store';
+import { Column, Card, Heading } from '@/components';
 import { CardData } from '@/common';
-import { Column, Card } from '@/components/molecules';
-import { storeActions, useAppDispatch } from '@/store';
 
 export const KanbanBoard: React.FC<KanbanBoardProps> = (props) => {
   const { columns, className, ...rest } = props;
   const dispatch = useAppDispatch();
-  const {
-    demoActions: { changeCardColumn, changeCardOrder },
-  } = storeActions;
   const CARD_BG_CLASS = 'after:bg-red-500';
 
   const toggleCardBorder = (target: HTMLElement) => {
@@ -34,42 +31,51 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = (props) => {
 
   const columnDragEnter = (evt: React.DragEvent) => {
     evt.preventDefault();
-    toggleCardBorder(evt.target as HTMLElement);
+    // toggleCardBorder(evt.target as HTMLElement);
   };
 
   const columnDragLeave = (evt: React.DragEvent) => {
     const target = evt.target as HTMLElement;
-    toggleCardBorder(target);
+    // toggleCardBorder(target);
   };
 
-  const onCardDrop = (evt: React.DragEvent, dropTask: CardData) => {
-    evt.preventDefault();
-    evt.stopPropagation();
-    const task: CardData = JSON.parse(evt.dataTransfer.getData('task'));
-    toggleCardBorder(evt.target as HTMLElement);
+  // wil be added in second MVP
+  // const onCardDrop = (evt: React.DragEvent, dropTask: CardData) => {
+  //   evt.preventDefault();
+  //   evt.stopPropagation();
+  //   const task: CardData = JSON.parse(evt.dataTransfer.getData('task'));
+  //   toggleCardBorder(evt.target as HTMLElement);
 
-    if (task.id === dropTask.id) {
-      return;
-    }
+  //   if (task.id === dropTask.id) {
+  //     return;
+  //   }
 
-    if (task.column !== dropTask.column) {
-      dispatch(changeCardColumn({ id: task.id, column: dropTask.column }));
-    }
+  //   if (task.column !== dropTask.column) {
+  //     // dispatch(changeCardColumn({ id: task.id, column: dropTask.column }));
+  //   }
 
-    const newOrder = dropTask.order + 1;
-    dispatch(changeCardOrder({ id: task.id, order: newOrder }));
-  };
+  //   const newOrder = dropTask.order + 1;
+  //   // dispatch(changeCardOrder({ id: task.id, order: newOrder }));
+  // };
 
   const onColumnDrop = (evt: React.DragEvent, columnId: string) => {
     evt.preventDefault();
-    const task: CardData = JSON.parse(evt.dataTransfer.getData('task'));
+    const card: CardData = JSON.parse(evt.dataTransfer.getData('task'));
 
-    if (task.column === columnId) {
+    if (card.column === columnId) {
       return;
     }
 
-    dispatch(changeCardColumn({ id: task.id, column: columnId }));
+    dispatch(asyncActions.updateCard({ ...card, column: columnId }));
   };
+
+  if (!columns.length) {
+    return (
+      <Heading type="h3" styledAs="h6" className="container mx-auto">
+        Your Board is Empty, create new column
+      </Heading>
+    );
+  }
 
   return (
     <ul {...rest} className={cn('flex gap-5', className)}>
@@ -90,7 +96,11 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = (props) => {
                 data-card
                 draggable
                 onDragStart={(evt) => cardDragStart(evt, card)}
-                onDrop={(evt) => onCardDrop(evt, card)}
+                onDragEnter={(evt) => toggleCardBorder(evt.target as HTMLElement)}
+                onDragLeave={(evt) => toggleCardBorder(evt.target as HTMLElement)}
+                onDrop={(evt) => toggleCardBorder(evt.target as HTMLElement)}
+                // wil be added in second MVP
+                // onDrop={(evt) => onCardDrop(evt, card)}
               />
             )}
           </Column>

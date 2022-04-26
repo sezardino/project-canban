@@ -8,15 +8,17 @@ export class CardService extends AbstractService<Card> {
   }
 
   public async getAll(boardId: string): Promise<Card[]> {
-    const allColumns = await this.client.getAll();
-    return allColumns.filter((column) => column.board === boardId);
+    const allCards = (await this.client.getAll()) || [];
+    return allCards.filter((card) => card.board === boardId);
   }
 
   public async add(title: string, column: string, board: string): Promise<Card[]> {
-    const allCards = await this.client.getAll();
-    const lastCardIndex = allCards[allCards.length - 1].id.split('-')[1];
+    const allCards = await this.getAll(board);
+    const lastCardIndex = allCards.length ? allCards[allCards.length - 1].id.split('-')[1] : 0;
     const cardId = `${board}-${+lastCardIndex + 1}`;
 
-    return await this.client.add({ board, id: cardId, title, column });
+    const savedCards = await this.client.add({ board, id: cardId, title, column });
+
+    return savedCards.filter((card) => card.board === board);
   }
 }

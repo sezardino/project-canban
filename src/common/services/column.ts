@@ -8,7 +8,7 @@ export class ColumnService extends AbstractService<Column> {
   }
 
   public async getAll(boardId: string): Promise<Column[]> {
-    const allColumns = await this.client.getAll();
+    const allColumns = (await this.client.getAll()) || [];
     return allColumns.filter((column) => column.board === boardId);
   }
 
@@ -16,12 +16,16 @@ export class ColumnService extends AbstractService<Column> {
     const allColumns = await this.client.getAll();
     const columnId = label.toLocaleLowerCase().replace(' ', '-');
 
-    const hasColumn = allColumns.find((column) => column.label === label || column.id === columnId);
+    const hasColumn = allColumns
+      .filter((column) => column.board === boardId)
+      .find((column) => column.label === label || column.id === columnId);
 
     if (hasColumn) {
-      throw new Error('Board already exists');
+      throw new Error('Column already exists');
     }
 
-    return await this.client.add({ board: boardId, id: columnId, label: label });
+    const savedColumns = await this.client.add({ board: boardId, id: columnId, label: label });
+
+    return savedColumns.filter((column) => column.board === boardId);
   }
 }

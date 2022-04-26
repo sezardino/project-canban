@@ -1,6 +1,7 @@
 import { Link, Outlet } from 'react-router-dom';
 
 import { ReactComponent as Logo } from '@/assets/logo-full.svg';
+import { ToastsWrapper } from '../organisms';
 
 export const DemoLayout: React.FC = () => {
   return (
@@ -14,6 +15,7 @@ export const DemoLayout: React.FC = () => {
       </header>
       <main className="mt-[89px]" style={{ height: 'calc(100vh - 89px)' }}>
         <Outlet />
+        <ToastsWrapper className="fixed top-10 left-full w-full max-w-xs translate-x-[-110%]" />
       </main>
     </div>
   );

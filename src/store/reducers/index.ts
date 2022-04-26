@@ -1,2 +1,2 @@
-export * from './demo';
+export * from './demo-board';
 export * from './demo-boards';

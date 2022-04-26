@@ -2,7 +2,7 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { RootState, rootState } from './rootReducer';
-import { demoBoardsActions, demoBoardsAsyncActions } from './reducers';
+import { demoBoardAsyncActions, demoBoardsActions, demoBoardsAsyncActions } from './reducers';
 
 export const store = configureStore({
   reducer: rootState,
@@ -10,6 +10,7 @@ export const store = configureStore({
 
 export const asyncActions = {
   ...demoBoardsAsyncActions,
+  ...demoBoardAsyncActions,
 };
 
 export const appActions = {

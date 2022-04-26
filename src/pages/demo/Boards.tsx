@@ -1,5 +1,5 @@
 import { Board, ToastTypes } from '@/common';
-import { Button, Heading, Spinner, Text, ToastsWrapper, Tooltip } from '@/components';
+import { Button, Heading, Spinner, Text, Tooltip } from '@/components';
 import { useUI } from '@/context';
 import { asyncActions, useAppDispatch, useAppSelector } from '@/store';
 import { useEffect, useMemo } from 'react';
@@ -105,7 +105,6 @@ const Boards = () => {
         </Tooltip>
       </header>
       <div className="mt-10">{boards.length > 0 ? boardsList : noBoards}</div>
-      <ToastsWrapper className="fixed top-10 left-full w-full max-w-xs translate-x-[-110%]" />
     </div>
   );
 };
