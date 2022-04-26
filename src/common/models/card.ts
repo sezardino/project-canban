@@ -2,7 +2,6 @@ export interface Card {
   column: Column['id'];
   readonly board: Board['id'];
   title: string;
-  order?: number;
   readonly id: string;
 }
 
