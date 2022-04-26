@@ -15,6 +15,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
     isOutlined = false,
     color = 'primary',
     children,
+    className,
     ...rest
   } = props;
 
@@ -40,10 +41,13 @@ export const Button: React.FC<ButtonProps> = (props) => {
     ['rounded-full']: isRounded,
   });
   const linkStyles = cn(fonts);
-  const classes = cn({
-    [buttonStyles]: !isLink,
-    [linkStyles]: isLink,
-  });
+  const classes = cn(
+    {
+      [buttonStyles]: !isLink,
+      [linkStyles]: isLink,
+    },
+    className,
+  );
 
   if ('to' in props) {
     const typedRest = rest as LinkProps;

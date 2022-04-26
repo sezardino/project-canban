@@ -37,11 +37,11 @@ export const Toast: React.FC<ToastProps> = (props) => {
   const bg = toastBg[type];
 
   return (
-    <div {...rest} className={cn(className, 'grid grid-col-6  bg-white rounded-lg shadow-md overflow-hidden')}>
-      <div className={cn('flex justify-center items-center col-start-1', bg)}>
+    <div {...rest} className={cn(className, 'bg-white rounded-lg shadow-md flex overflow-hidden')}>
+      <div className={cn('flex justify-center items-center w-1/4', bg)}>
         <Icon width="32" height="32" />
       </div>
-      <div className="col-start-2 col-end-6 p-5">
+      <div className="p-5 w-3/4">
         <Text size="xl" weight="semibold">
           {toastHeadings[type]}
         </Text>
