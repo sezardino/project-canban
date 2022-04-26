@@ -1,21 +1,22 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { demoReducer, demoActions } from './reducers';
+import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import { RootState, rootState } from './rootReducer';
+import { demoBoardsActions, demoBoardsAsyncActions } from './reducers';
 
-const rootReducer = combineReducers({
-  demoReducer,
+export const store = configureStore({
+  reducer: rootState,
 });
 
-export const storeActions = {
-  demoActions,
+export const asyncActions = {
+  ...demoBoardsAsyncActions,
 };
 
-export const setupStore = () =>
-  configureStore({
-    reducer: rootReducer,
-  });
+export const appActions = {
+  ...demoBoardsActions,
+};
 
-export type RootState = ReturnType<typeof rootReducer>;
-export type AppStore = ReturnType<typeof setupStore>;
-export type AppDispatch = AppStore['dispatch'];
-export * from './hooks';
+export type AppDispatch = typeof store.dispatch;
+export const useAppDispatch = () => useDispatch<AppDispatch>();
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+export type AppThunk = ThunkAction<void, RootState, unknown, Action>;
