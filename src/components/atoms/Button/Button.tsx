@@ -14,6 +14,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
     isRounded = false,
     isOutlined = false,
     color = 'primary',
+    hasPadding = false,
     children,
     className,
     ...rest
@@ -40,7 +41,9 @@ export const Button: React.FC<ButtonProps> = (props) => {
     ['w-full']: isFullWidth,
     ['rounded-full']: isRounded,
   });
-  const linkStyles = cn(fonts);
+  const linkStyles = cn(fonts, {
+    [sizesStyles[size]]: hasPadding,
+  });
   const classes = cn(
     {
       [buttonStyles]: !isLink,
