@@ -21,7 +21,7 @@ export class LocalStorage<U extends { id: string }> implements Client<U> {
         localStorage.setItem(this.key, JSON.stringify(data));
       }
 
-      resolve(items);
+      resolve(items || []);
     });
   }
 
