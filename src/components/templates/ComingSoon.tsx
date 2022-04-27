@@ -1,7 +1,7 @@
 import { Button, Heading } from '@/components';
 import { ReactComponent as Logo } from '@/assets/logo-full.svg';
 
-export const ComingSoon = () => {
+export const ComingSoonTemplate = () => {
   return (
     <div className="container mx-auto h-full text-center py-40">
       <Logo width="250" height="250" className="mx-auto" />
