@@ -7,7 +7,7 @@ export const ComingSoonTemplate = () => {
       <Logo width="250" height="250" className="mx-auto" />
       <Heading type="h1">New Things Coming Soon</Heading>
       <div className="mt-10 flex gap-2 justify-center">
-        <Button to={'/release'} isOutlined color="dark" size="lg">
+        <Button to={'/releases'} isOutlined color="dark" size="lg">
           Stay tuned for updates
         </Button>
         <Button to={'/demo'} isOutlined color="dark" size="lg">
