@@ -1,15 +1,14 @@
 import { CardData } from '@/common';
 import { Button } from '@/components/atoms';
 import { Card, Column } from '@/components/molecules';
+import { asyncActions, useAppDispatch } from '@/store';
 
 import { KanbanTemplateProps } from './props';
 
 export const KanbanTemplate: React.FC<KanbanTemplateProps> = (props) => {
   const dispatch = useAppDispatch();
-  const {
-    demoActions: { changeCardColumn, changeCardOrder },
-  } = storeActions;
   const { columns, ...rest } = props;
+  const { updateCard } = asyncActions;
   const CARD_BG_CLASS = 'after:bg-red-500';
 
   const toggleCardBorder = (target: HTMLElement) => {
@@ -51,11 +50,8 @@ export const KanbanTemplate: React.FC<KanbanTemplateProps> = (props) => {
     }
 
     if (task.column !== dropTask.column) {
-      dispatch(changeCardColumn({ id: task.id, column: dropTask.column }));
+      dispatch(updateCard({ ...task, column: dropTask.column }));
     }
-
-    const newOrder = dropTask.order + 1;
-    dispatch(changeCardOrder({ id: task.id, order: newOrder }));
   };
 
   const onColumnDrop = (evt: React.DragEvent, columnId: string) => {
@@ -66,7 +62,7 @@ export const KanbanTemplate: React.FC<KanbanTemplateProps> = (props) => {
       return;
     }
 
-    dispatch(changeCardColumn({ id: task.id, column: columnId }));
+    dispatch(updateCard({ ...task, column: columnId }));
   };
 
   return (

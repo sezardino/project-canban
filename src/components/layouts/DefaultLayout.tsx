@@ -20,13 +20,18 @@ export const DefaultLayout: React.FC = () => {
           </Link>
           <nav>
             <ul className="flex items-center">
-              {links.map(({ path, label }) => (
-                <li key={path}>
-                  <Button to={path} isLink hasPadding color="dark">
-                    {label}
+              {links.map((link) => (
+                <li key={link.path}>
+                  <Button to={link.path} isLink hasPadding color="dark">
+                    {link.label}
                   </Button>
                 </li>
               ))}
+              <li>
+                <Button to={'/demo'} color="dark">
+                  Demo
+                </Button>
+              </li>
             </ul>
           </nav>
         </div>
