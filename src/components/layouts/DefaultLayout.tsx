@@ -4,8 +4,13 @@ import { ToastsWrapper } from '../organisms/ToastsWrapper/ToastsWrapper';
 import { ReactComponent as Logo } from '@/assets/logo.svg';
 import { Button } from '@/components';
 import { indexPages } from '@/router/pages';
+import { useMemo } from 'react';
 
 export const DefaultLayout: React.FC = () => {
+  const links = useMemo(() => {
+    return indexPages.filter((page) => page.label).map(({ label, path }) => ({ label, path }));
+  }, [indexPages]);
+
   return (
     <>
       <header className="py-5 shadow-2xl">
@@ -15,16 +20,12 @@ export const DefaultLayout: React.FC = () => {
           </Link>
           <nav>
             <ul className="flex items-center">
-              {indexPages.map(({ path, label }) => (
-                <>
-                  {!label ? null : (
-                    <li key={path}>
-                      <Button to={path} isLink hasPadding color="dark">
-                        {label}
-                      </Button>
-                    </li>
-                  )}
-                </>
+              {links.map(({ path, label }) => (
+                <li key={path}>
+                  <Button to={path} isLink hasPadding color="dark">
+                    {label}
+                  </Button>
+                </li>
               ))}
             </ul>
           </nav>
