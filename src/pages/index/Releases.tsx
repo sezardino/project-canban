@@ -1,5 +1,7 @@
+import { ReleasesTemplate } from '@/components';
+
 const Releases = () => {
-  return <h1>Releases</h1>;
+  return <ReleasesTemplate />;
 };
 
 export default Releases;
