@@ -61,7 +61,7 @@ export const PricingTemplate = () => {
         {prices.map((price) => (
           <li
             key={price.id}
-            className="grid gap-5 items-start justify-center text-center shadow-md p-10 rounded-3xl w-full hover:shadow-2xl hover:shadow-teal-500"
+            className="grid gap-5 items-start justify-center text-center shadow-md p-10 rounded-3xl w-full transition-shadow hover:shadow-2xl hover:shadow-teal-500"
           >
             <div>
               <Heading styledAs="h6" color="info">
