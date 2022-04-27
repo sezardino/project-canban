@@ -1,54 +1,92 @@
-import { useEffect, useMemo } from 'react';
+import { useDeferredValue, useEffect, useMemo } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
-import { cardsArr, columnsArr } from '@/common';
+import { useAppDispatch, useAppSelector, asyncActions } from '@/store';
 import { Button, KanbanBoard } from '@/components';
-import { storeActions, useAppDispatch, useAppSelector } from '@/store';
+import { useUI } from '@/context';
 
 const KanbanPage = () => {
-  const { cards, columns } = useAppSelector((state) => state.demoReducer);
+  const params = useParams();
+  const { addErrorToast, addInfoToast, addWarningToast } = useUI();
+  const { currentBoard, cards, columns, error, info, isLoading } = useAppSelector((state) => state.demoBoard);
+  const prevBoardValue = useDeferredValue(currentBoard);
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const {
-    demoActions: { setCards, setColumns, addCard, addColumn },
-  } = storeActions;
 
   useEffect(() => {
-    dispatch(setCards(cardsArr));
-    dispatch(setColumns(columnsArr));
+    if (!params.id) {
+      return navigate('/404');
+    }
+
+    dispatch(asyncActions.getBoard(params.id));
   }, []);
 
+  useEffect(() => {
+    if (!currentBoard && !isLoading) {
+      return navigate('/404');
+    }
+
+    if (currentBoard !== prevBoardValue && currentBoard) {
+      dispatch(asyncActions.getCards(currentBoard.id));
+      dispatch(asyncActions.getColumns(currentBoard.id));
+    }
+  }, [currentBoard]);
+
+  useEffect(() => {
+    if (error) {
+      return addErrorToast(error);
+    }
+
+    if (info) {
+      return addInfoToast(info);
+    }
+  }, [error, info]);
+
   const addColumnHandler = () => {
+    if (!currentBoard) {
+      return;
+    }
+
     const label = prompt('Enter new board name', '');
+
     if (!label) {
-      return alert('You must enter name');
+      return addWarningToast('You must enter name');
     }
 
     if (columns.find((column) => column.label === label)) {
-      return alert('Board with this name already exists');
+      return addErrorToast('Board with this name already exists');
     }
 
     const id = label.replace(' ', '-').toLowerCase();
 
     if (columns.find((column) => column.id === id)) {
-      return alert('Board with this name(id) already exists');
+      return addErrorToast(`Board with this name(${id}) already exists`);
     }
 
-    dispatch(addColumn({ label, id }));
+    dispatch(asyncActions.addColumn(label, currentBoard.id));
   };
 
   const addCardHandler = () => {
-    const title = prompt('Enter new board title', '');
-
-    if (!title) {
-      return alert('You must enter title');
+    if (!currentBoard) {
+      return;
     }
 
-    dispatch(addCard({ title }));
+    if (!columns.length) {
+      return addWarningToast('You must create at least one column');
+    }
+
+    const title = prompt('Enter new board title', '');
+    if (!title) {
+      return addWarningToast('You must enter title');
+    }
+
+    dispatch(asyncActions.addCard(title, columns[0].id, currentBoard.id));
   };
 
   const kanbanContent = useMemo(() => {
     return columns.map((column) => ({
       ...column,
-      items: cards.filter((card) => card.column === column.id).sort((a, b) => a.order - b.order),
+      items: cards.filter((card) => card.column === column.id),
     }));
   }, [cards, columns]);
 
@@ -57,7 +95,7 @@ const KanbanPage = () => {
       <header className="flex justify-between py-10 px-10">
         <h1 className="text-4xl">Kanban Board</h1>
         <div className="flex gap-2">
-          <Button onClick={addCardHandler}>Add New Task</Button>
+          <Button onClick={addCardHandler}>Add New Card</Button>
           <Button onClick={addColumnHandler}>Add New Column</Button>
         </div>
       </header>

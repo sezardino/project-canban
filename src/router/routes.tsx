@@ -6,6 +6,7 @@ import { RouteObject } from 'react-router-dom';
 
 const NotFound = lazy(() => import('@/pages/index/NotFound'));
 const Kanban = lazy(() => import('@/pages/demo/Kanban'));
+const Boards = lazy(() => import('@/pages/demo/Boards'));
 
 export const routes: RouteObject[] = [
   {
@@ -16,5 +17,12 @@ export const routes: RouteObject[] = [
       { path: '*', element: <NotFound /> },
     ],
   },
-  { path: '/demo', element: <DemoLayout />, children: [{ path: 'kanban', element: <Kanban /> }] },
+  {
+    path: '/demo',
+    element: <DemoLayout />,
+    children: [
+      { index: true, element: <Boards /> },
+      { path: ':id', children: [{ index: true, element: <Kanban /> }] },
+    ],
+  },
 ];

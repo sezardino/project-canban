@@ -6,8 +6,9 @@ import './styles/index.css';
 import { UIProvider } from './context';
 import { AppRouter } from './router';
 import { Provider } from 'react-redux';
-import { setupStore } from './store';
+import { store } from './store';
 import React from 'react';
+import { ErrorBoundary } from './components';
 
 const createWrapper = () => {
   const wrapper = document.createElement('div');
@@ -18,16 +19,17 @@ const createWrapper = () => {
 };
 
 const root = createRoot(createWrapper());
-const store = setupStore();
 
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <UIProvider>
-        <BrowserRouter>
-          <AppRouter />
-        </BrowserRouter>
-      </UIProvider>
-    </Provider>
+    <ErrorBoundary>
+      <Provider store={store}>
+        <UIProvider>
+          <BrowserRouter>
+            <AppRouter />
+          </BrowserRouter>
+        </UIProvider>
+      </Provider>
+    </ErrorBoundary>
   </React.StrictMode>,
 );
