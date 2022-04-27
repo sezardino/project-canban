@@ -5,6 +5,7 @@ import { BaseColors, BaseSizes } from '@/common';
 interface CommonButtonProps {
   size?: Extract<BaseSizes, 'sm' | 'md' | 'lg'>;
   isLink?: boolean;
+  hasPadding?: boolean;
   isFullWidth?: boolean;
   isRounded?: boolean;
   isOutlined?: boolean;
