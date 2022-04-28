@@ -8,7 +8,7 @@ import { AppRouter } from './router';
 import { Provider } from 'react-redux';
 import { store } from './store';
 import React from 'react';
-import { ErrorBoundary } from './components';
+import { ErrorWrapper } from './components';
 
 const createWrapper = () => {
   const wrapper = document.createElement('div');
@@ -22,7 +22,7 @@ const root = createRoot(createWrapper());
 
 root.render(
   <React.StrictMode>
-    <ErrorBoundary>
+    <ErrorWrapper>
       <Provider store={store}>
         <UIProvider>
           <BrowserRouter>
@@ -30,6 +30,6 @@ root.render(
           </BrowserRouter>
         </UIProvider>
       </Provider>
-    </ErrorBoundary>
+    </ErrorWrapper>
   </React.StrictMode>,
 );

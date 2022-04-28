@@ -1,5 +1,4 @@
-import { Heading } from '@/components';
-import { Text } from '../atoms';
+import { Heading, Text } from '@/components';
 
 export const ReleasesTemplate = () => {
   return (

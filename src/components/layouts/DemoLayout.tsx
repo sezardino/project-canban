@@ -1,7 +1,7 @@
 import { Link, Outlet } from 'react-router-dom';
 
 import { ReactComponent as Logo } from '@/assets/logo-full.svg';
-import { ToastsWrapper } from '../organisms';
+import { ToastsWrapper } from '@/components';
 
 export const DemoLayout: React.FC = () => {
   return (

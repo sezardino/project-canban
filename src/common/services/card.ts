@@ -1,5 +1,5 @@
-import { Client } from '@/common/client';
-import { Card } from '@/common';
+import { Client, Card } from '@/common';
+
 import { AbstractService } from './abstract';
 
 export class CardService extends AbstractService<Card> {

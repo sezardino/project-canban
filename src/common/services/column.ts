@@ -1,5 +1,5 @@
-import { Client } from '@/common/client';
-import { Column } from '@/common';
+import { Client, Column } from '@/common';
+
 import { AbstractService } from './abstract';
 
 export class ColumnService extends AbstractService<Column> {

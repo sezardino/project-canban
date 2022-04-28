@@ -1,5 +1,5 @@
-import { LocalStorageKeys, LocalStorageItems, Card, Board, Column } from '@/common';
-import { LocalStorage } from '@/common/client';
+import { LocalStorage, LocalStorageKeys, LocalStorageItems, Card, Board, Column } from '@/common';
+
 import { BoardService } from './board';
 import { CardService } from './card';
 import { ColumnService } from './column';

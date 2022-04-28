@@ -1,11 +1,12 @@
 import { Component, ErrorInfo } from 'react';
-import { ErrorBoundaryProps } from './props';
+import { ErrorTemplate, DefaultLayout } from '@/components';
+import { ErrorWrapperProps } from './props';
 
 interface State {
   hasError: boolean;
 }
 
-export class ErrorBoundary extends Component<ErrorBoundaryProps, State> {
+export class ErrorWrapper extends Component<ErrorWrapperProps, State> {
   public state: State = {
     hasError: false,
   };
@@ -20,7 +21,11 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, State> {
 
   public render() {
     if (this.state.hasError) {
-      return <h1>Sorry.. there was an error</h1>;
+      return (
+        <DefaultLayout>
+          <ErrorTemplate status={500} description="Oops, Something went, wrong" />
+        </DefaultLayout>
+      );
     }
 
     return this.props.children;

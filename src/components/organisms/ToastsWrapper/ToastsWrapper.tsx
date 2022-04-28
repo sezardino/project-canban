@@ -1,4 +1,4 @@
-import { Toast } from '@/components/molecules';
+import { Toast } from '@/components';
 import { useUI } from '@/context';
 import { usePortal } from '@/hooks';
 import cn from 'classnames';

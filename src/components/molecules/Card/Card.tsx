@@ -1,4 +1,4 @@
-import { Text } from '@/components/atoms';
+import { Text } from '@/components';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 import { CardProps } from './props';

@@ -1,12 +1,16 @@
 import { Link, Outlet } from 'react-router-dom';
-import { ToastsWrapper } from '../organisms/ToastsWrapper/ToastsWrapper';
+import { ToastsWrapper } from '@/components';
 
 import { ReactComponent as Logo } from '@/assets/logo.svg';
 import { Button } from '@/components';
 import { indexPages } from '@/router/pages';
 import { useMemo } from 'react';
 
-export const DefaultLayout: React.FC = () => {
+interface LayoutProps {
+  children?: React.ReactNode;
+}
+
+export const DefaultLayout: React.FC<LayoutProps> = (props) => {
   const links = useMemo(() => {
     return indexPages.filter((page) => page.label).map(({ label, path }) => ({ label, path }));
   }, [indexPages]);
@@ -37,7 +41,8 @@ export const DefaultLayout: React.FC = () => {
         </div>
       </header>
       <main>
-        <Outlet />
+        {props.children ? props.children : <Outlet />}
+
         <ToastsWrapper className="fixed top-10 left-full w-full max-w-xs translate-x-[-110%]" />
       </main>
     </>

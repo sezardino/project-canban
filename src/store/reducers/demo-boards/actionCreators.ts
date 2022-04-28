@@ -1,7 +1,8 @@
-import { getErrorMessage } from '@/common/helpers';
-import { demoService } from '@/common';
-import { AppThunk } from '@/store';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+
+import { getErrorMessage, demoService } from '@/common';
+import { AppThunk } from '@/store';
+
 import { demoBoardsActions } from '.';
 
 export const getBoards = createAsyncThunk('demo-boards/getBoards', async (_, thunkAPI) => {

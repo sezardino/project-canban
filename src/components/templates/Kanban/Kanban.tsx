@@ -1,7 +1,7 @@
-import { CardData } from '@/common';
-import { Button } from '@/components/atoms';
-import { Card, Column } from '@/components/molecules';
 import { asyncActions, useAppDispatch } from '@/store';
+import { CardData } from '@/common';
+
+import { Button, Card, Column } from '@/components';
 
 import { KanbanTemplateProps } from './props';
 

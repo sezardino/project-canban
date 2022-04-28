@@ -1,4 +1,4 @@
-import { Client } from '@/common/client';
+import { Client } from '@/common';
 
 interface IAbstractService<T extends { id: string }> {
   getAll(...args: unknown[]): Promise<T[]>;

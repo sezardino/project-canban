@@ -1,12 +1,7 @@
-import { Heading, Text } from '@/components';
+import { ErrorTemplate } from '@/components';
 
 export const NotFound = () => {
-  return (
-    <div className="container mx-auto text-center">
-      <Heading type="h1">404</Heading>
-      <Text className="mt-4">Page not found</Text>
-    </div>
-  );
+  return <ErrorTemplate status={404} description="page not found" />;
 };
 
 export default NotFound;

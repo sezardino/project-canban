@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import { Button, Heading, Text } from '../atoms';
+import { Button, Heading, Text } from '@/components';
 
 export const PricingTemplate = () => {
   const prices = [

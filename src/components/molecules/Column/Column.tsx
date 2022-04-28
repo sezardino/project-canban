@@ -1,4 +1,4 @@
-import { Heading } from '@/components/atoms';
+import { Heading } from '@/components';
 import cn from 'classnames';
 import React from 'react';
 import { ColumnProps } from './props';

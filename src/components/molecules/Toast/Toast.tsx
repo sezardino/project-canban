@@ -2,7 +2,7 @@ import cn from 'classnames';
 import { ToastProps } from './props';
 
 import { ToastTypes } from '@/common';
-import { Text } from '@/components/atoms';
+import { Text } from '@/components';
 
 import { ReactComponent as SuccessIcon } from '@/assets/icons/checkmark.svg';
 import { ReactComponent as WarningIcon } from '@/assets/icons/exclamation.svg';

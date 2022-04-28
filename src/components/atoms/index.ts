@@ -1,4 +1,3 @@
-export * from './ErrorBoundary/ErrorBoundary';
 export * from './Button/Button';
 export * from './Textarea/Textarea';
 export * from './Input/Input';
@@ -8,3 +7,4 @@ export * from './Heading/Heading';
 export * from './Text/Text';
 export * from './Spinner/Spinner';
 export * from './Modal/Modal';
+export * from './ErrorWrapper/ErrorWrapper';
