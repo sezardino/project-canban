@@ -1,5 +1,4 @@
-import { Card, demoService } from '@/common';
-import { getErrorMessage } from '@/common/helpers';
+import { Card, demoService, getErrorMessage } from '@/common';
 import { AppThunk } from '@/store';
 import { demoBoardActions } from '.';
 

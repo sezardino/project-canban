@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { DefaultLayout, DemoLayout } from '@/components/layouts';
+import { DefaultLayout, DemoLayout } from '@/components';
 
 import { RouteObject } from 'react-router-dom';
 import { indexPages, demoPages } from './pages';
