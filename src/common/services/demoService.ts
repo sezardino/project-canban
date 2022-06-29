@@ -15,7 +15,7 @@ class DemoService {
     return await this.boardService.getAll();
   }
 
-  public async addNewBoard(boardLabel: string): Promise<Board[]> {
+  public async addNewBoard(boardLabel: string): Promise<Board> {
     return await this.boardService.add(boardLabel);
   }
 
@@ -35,7 +35,7 @@ class DemoService {
     return await this.columnService.getAll(boardId);
   }
 
-  public async addNewColumn(label: string, boardId: string): Promise<Column[]> {
+  public async addNewColumn(label: string, boardId: string): Promise<Column> {
     return await this.columnService.add(label, boardId);
   }
 
@@ -51,7 +51,7 @@ class DemoService {
     return await this.cardService.getAll(boardId);
   }
 
-  public async addNewCard(title: string, columnId: string, boardId: string): Promise<Card[]> {
+  public async addNewCard(title: string, columnId: string, boardId: string): Promise<Card> {
     return await this.cardService.add(title, columnId, boardId);
   }
 

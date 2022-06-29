@@ -4,7 +4,7 @@ interface IAbstractService<T extends { id: string }> {
   getAll(...args: unknown[]): Promise<T[]>;
   getById(id: string): Promise<T>;
   update(item: T): Promise<T>;
-  add(...args: unknown[]): Promise<T[]>;
+  add(...args: unknown[]): Promise<T>;
 }
 
 export abstract class AbstractService<T extends { id: string }> implements IAbstractService<T> {
@@ -22,7 +22,7 @@ export abstract class AbstractService<T extends { id: string }> implements IAbst
     return await this.client.update(item);
   }
 
-  public async add(...args: unknown[]): Promise<T[]> {
+  public async add(...args: unknown[]): Promise<T> {
     throw new Error('Method not implemented.');
   }
 

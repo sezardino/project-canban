@@ -49,12 +49,14 @@ export class LocalStorage<U extends { id: string }> implements Client<U> {
     return neededItem;
   }
 
-  public async add(item: U): Promise<U[]> {
+  public async add(item: U): Promise<U> {
     const items = await this.getAll();
 
     items.push(item);
 
-    return await this.save(items);
+    await this.save(items);
+
+    return item;
   }
 
   public async update(item: U): Promise<U> {

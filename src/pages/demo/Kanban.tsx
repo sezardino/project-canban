@@ -63,7 +63,7 @@ const KanbanPage = () => {
       return addErrorToast(`Board with this name(${id}) already exists`);
     }
 
-    dispatch(asyncActions.addColumn(label, currentBoard.id));
+    dispatch(asyncActions.addColumn({ label, boardId: currentBoard.id }));
   };
 
   const addCardHandler = () => {
@@ -80,7 +80,7 @@ const KanbanPage = () => {
       return addWarningToast('You must enter title');
     }
 
-    dispatch(asyncActions.addCard(title, columns[0].id, currentBoard.id));
+    dispatch(asyncActions.addCard({ title, columnId: columns[0].id, boardId: currentBoard.id }));
   };
 
   const kanbanContent = useMemo(() => {
