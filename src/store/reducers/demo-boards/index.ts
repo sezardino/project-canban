@@ -1,6 +1,7 @@
 import { Board } from '@/common';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppReducers } from '../../types';
+import { fulfilledAction, pendingAction, rejectedAction } from '../helpers';
 import * as asyncActions from './actionCreators';
 
 interface DemoBoardsState {
@@ -20,37 +21,29 @@ const initialState: DemoBoardsState = {
 const boardsSlice = createSlice({
   name: AppReducers.DEMO_BOARDS,
   initialState,
-  reducers: {
-    setBoards: (state, action: PayloadAction<Board[]>) => {
-      state.boards = action.payload;
-    },
-    setLoading: (state, action: PayloadAction<boolean>) => {
-      state.isLoading = action.payload;
-    },
-    deleteBoard: (state, action: PayloadAction<Board>) => {
-      state.boards = state.boards.filter((board) => board.id !== action.payload.id);
-    },
-    setError: (state, action: PayloadAction<string | null>) => {
-      state.error = action.payload;
-    },
-    setInfo: (state, action: PayloadAction<string | null>) => {
-      state.info = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: {
-    [asyncActions.getBoards.pending.type]: (state) => {
-      state.isLoading = true;
-      state.error = null;
-    },
+    [asyncActions.getBoards.pending.type]: pendingAction,
     [asyncActions.getBoards.fulfilled.type]: (state, action: PayloadAction<Board[]>) => {
       state.boards = action.payload;
+      fulfilledAction(state);
+    },
+    [asyncActions.getBoards.rejected.type]: rejectedAction,
+    [asyncActions.addBoard.pending.type]: pendingAction,
+    [asyncActions.addBoard.fulfilled.type]: (state, action: PayloadAction<Board>) => {
+      state.boards.push(action.payload);
+      state.info = `Board ${action.payload.label} added successfully`;
       state.isLoading = false;
+    },
+    [asyncActions.addBoard.rejected.type]: rejectedAction,
+    [asyncActions.deleteBoard.pending.type]: (state) => {
       state.error = null;
     },
-    [asyncActions.getBoards.rejected.type]: (state, action: PayloadAction<string>) => {
-      state.isLoading = false;
-      state.error = action.payload;
+    [asyncActions.deleteBoard.fulfilled.type]: (state, action: PayloadAction<Board>) => {
+      state.boards = state.boards.filter((board) => board.id !== action.payload.id);
+      state.info = `Board ${action.payload.label} deleted successfully`;
     },
+    [asyncActions.deleteBoard.rejected.type]: rejectedAction,
   },
 });
 
