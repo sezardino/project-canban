@@ -50,7 +50,7 @@ export const KanbanTemplate: React.FC<KanbanTemplateProps> = (props) => {
     }
 
     if (task.column !== dropTask.column) {
-      dispatch(updateCard({ ...task, column: dropTask.column }));
+      dispatch(updateCard({ id: task.id, fields: { column: dropTask.column } }));
     }
   };
 
@@ -62,7 +62,7 @@ export const KanbanTemplate: React.FC<KanbanTemplateProps> = (props) => {
       return;
     }
 
-    dispatch(updateCard({ ...task, column: columnId }));
+    dispatch(updateCard({ id: task.id, fields: { column: columnId } }));
   };
 
   return (
