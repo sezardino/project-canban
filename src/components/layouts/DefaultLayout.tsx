@@ -23,10 +23,10 @@ export const DefaultLayout: React.FC<LayoutProps> = (props) => {
             <Logo />
           </Link>
           <nav>
-            <ul className="flex items-center">
+            <ul className="flex items-center gap-4">
               {links.map((link) => (
                 <li key={link.path}>
-                  <Button to={link.path} isLink hasPadding color="dark">
+                  <Button to={link.path} variant="text" color="dark">
                     {link.label}
                   </Button>
                 </li>

@@ -3,8 +3,8 @@ import { Client } from '@/common';
 interface IAbstractService<T extends { id: string }> {
   getAll(...args: unknown[]): Promise<T[]>;
   getById(id: string): Promise<T>;
-  update(item: T): Promise<T>;
-  add(...args: unknown[]): Promise<T[]>;
+  update(id: string, fields: Record<string, any>): Promise<T>;
+  add(...args: unknown[]): Promise<T>;
 }
 
 export abstract class AbstractService<T extends { id: string }> implements IAbstractService<T> {
@@ -18,11 +18,11 @@ export abstract class AbstractService<T extends { id: string }> implements IAbst
     return await this.client.getById(id);
   }
 
-  public async update(item: T): Promise<T> {
-    return await this.client.update(item);
+  public async update(id: string, fields: Record<string, any>): Promise<T> {
+    return await this.client.update(id, fields);
   }
 
-  public async add(...args: unknown[]): Promise<T[]> {
+  public async add(...args: unknown[]): Promise<T> {
     throw new Error('Method not implemented.');
   }
 

@@ -1,13 +1,15 @@
 import { TextareaProps } from './props';
 import cn from 'classnames';
+import { forwardRef } from 'react';
 
-export const Textarea: React.FC<TextareaProps> = (props) => {
+export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>((props, ref) => {
   const { className, label, ...rest } = props;
   return (
     <label className={cn(className)}>
-      <span className="form-label inline-block mb-2 text-gray-700">{label}</span>
+      {label ? <span className="form-label inline-block mb-2 text-gray-700">{label}</span> : null}
       <textarea
         {...rest}
+        ref={ref}
         className="
         block
         w-full
@@ -28,4 +30,4 @@ export const Textarea: React.FC<TextareaProps> = (props) => {
       />
     </label>
   );
-};
+});

@@ -11,7 +11,7 @@ export class BoardService extends AbstractService<Board> {
     return await this.client.getAll();
   }
 
-  public async add(label: string): Promise<Board[]> {
+  public async add(label: string): Promise<Board> {
     const id = label.toLocaleLowerCase().slice(0, label.length < 3 ? label.length : 3);
     const allBoards = await this.client.getAll();
 

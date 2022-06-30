@@ -1,7 +1,8 @@
 import { InputProps } from './props';
 import cn from 'classnames';
+import { forwardRef } from 'react';
 
-export const Input: React.FC<InputProps> = (props) => {
+export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const { label, className, size = 'md', helperText = '', ...rest } = props;
 
   const defaultStyles = `
@@ -31,9 +32,9 @@ export const Input: React.FC<InputProps> = (props) => {
 
   return (
     <label className={cn('relative block', className)}>
-      <span className="inline-block mb-2 text-gray-700">{label}</span>
-      <input {...rest} className={cn(defaultStyles, sizeStyles[size])} />
+      {label ? <span className="form-label inline-block mb-2 text-gray-700">{label}</span> : null}
+      <input {...rest} ref={ref} className={cn(defaultStyles, sizeStyles[size])} />
       {helper}
     </label>
   );
-};
+});

@@ -12,7 +12,7 @@ export class ColumnService extends AbstractService<Column> {
     return allColumns.filter((column) => column.board === boardId);
   }
 
-  public async add(label: string, boardId: string): Promise<Column[]> {
+  public async add(label: string, boardId: string): Promise<Column> {
     const allColumns = await this.client.getAll();
     const columnId = label.toLocaleLowerCase().replace(' ', '-');
 
@@ -24,8 +24,8 @@ export class ColumnService extends AbstractService<Column> {
       throw new Error('Column already exists');
     }
 
-    const savedColumns = await this.client.add({ board: boardId, id: columnId, label: label });
+    const newColumn = await this.client.add({ board: boardId, id: columnId, label: label });
 
-    return savedColumns.filter((column) => column.board === boardId);
+    return newColumn;
   }
 }

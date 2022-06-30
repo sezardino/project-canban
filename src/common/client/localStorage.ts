@@ -49,28 +49,31 @@ export class LocalStorage<U extends { id: string }> implements Client<U> {
     return neededItem;
   }
 
-  public async add(item: U): Promise<U[]> {
+  public async add(item: U): Promise<U> {
     const items = await this.getAll();
 
     items.push(item);
 
-    return await this.save(items);
+    await this.save(items);
+
+    return item;
   }
 
-  public async update(item: U): Promise<U> {
+  public async update(id: string, fields: Record<string, any>): Promise<U> {
     const items = await this.getAll();
 
-    const itemIndex = items.findIndex((i) => i.id === item.id);
+    const itemIndex = items.findIndex((i) => i.id === id);
 
     if (itemIndex === -1) {
       throw new Error('Item not found');
     }
 
-    items[itemIndex] = item;
+    const neededItem = { ...items[itemIndex], ...fields };
+
+    items[itemIndex] = neededItem;
 
     await this.save(items);
-
-    return item;
+    return neededItem;
   }
 
   public async delete(id: string): Promise<U> {

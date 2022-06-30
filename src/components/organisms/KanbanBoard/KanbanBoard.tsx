@@ -66,7 +66,7 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = (props) => {
       return;
     }
 
-    dispatch(asyncActions.updateCard({ ...card, column: columnId }));
+    dispatch(asyncActions.updateCard({ id: card.id, fields: { column: columnId } }));
   };
 
   if (!columns.length) {

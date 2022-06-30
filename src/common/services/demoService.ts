@@ -15,12 +15,12 @@ class DemoService {
     return await this.boardService.getAll();
   }
 
-  public async addNewBoard(boardLabel: string): Promise<Board[]> {
+  public async addNewBoard(boardLabel: string): Promise<Board> {
     return await this.boardService.add(boardLabel);
   }
 
   public async updateBoard(board: Board): Promise<Board> {
-    return await this.boardService.update(board);
+    return await this.boardService.update(board.id, board);
   }
 
   public async getBoard(boardId: string): Promise<Board> {
@@ -35,12 +35,12 @@ class DemoService {
     return await this.columnService.getAll(boardId);
   }
 
-  public async addNewColumn(label: string, boardId: string): Promise<Column[]> {
+  public async addNewColumn(label: string, boardId: string): Promise<Column> {
     return await this.columnService.add(label, boardId);
   }
 
   public async updateColumn(column: Column): Promise<Column> {
-    return await this.columnService.update(column);
+    return await this.columnService.update(column.id, column);
   }
 
   public async getColumn(columnId: string): Promise<Column> {
@@ -51,12 +51,12 @@ class DemoService {
     return await this.cardService.getAll(boardId);
   }
 
-  public async addNewCard(title: string, columnId: string, boardId: string): Promise<Card[]> {
+  public async addNewCard(title: string, columnId: string, boardId: string): Promise<Card> {
     return await this.cardService.add(title, columnId, boardId);
   }
 
-  public async updateCard(card: Card): Promise<Card> {
-    return await this.cardService.update(card);
+  public async updateCard(id: string, fields: Partial<Card>): Promise<Card> {
+    return await this.cardService.update(id, fields);
   }
 
   public async getCard(cardId: string): Promise<Card> {
