@@ -3,12 +3,10 @@ import { LinkProps } from 'react-router-dom';
 import { BaseColors, BaseSizes } from '@/common';
 
 interface CommonButtonProps {
-  size?: Extract<BaseSizes, 'sm' | 'md' | 'lg'>;
-  isLink?: boolean;
-  hasPadding?: boolean;
+  size?: Extract<BaseSizes, 'xs' | 'sm' | 'md' | 'lg'>;
+  variant?: 'filled' | 'outlined' | 'text';
   isFullWidth?: boolean;
   isRounded?: boolean;
-  isOutlined?: boolean;
   color?: BaseColors;
 }
 

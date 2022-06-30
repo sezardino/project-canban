@@ -9,7 +9,6 @@ export default {
     color: 'primary',
     isFullWidth: false,
     isRounded: false,
-    isOutlined: false,
     size: 'lg',
   },
   argTypes: {
@@ -43,9 +42,13 @@ export default {
       type: 'boolean',
       description: 'Whether the button is full width',
     },
-    isOutlined: {
-      name: 'isOutlined',
-      type: 'boolean',
+    variant: {
+      name: 'variant',
+      type: 'string',
+      options: ['sm', 'md', 'lg'],
+      control: {
+        type: 'inline-radio',
+      },
       description: 'Whether the button is outlined',
     },
   },
@@ -78,7 +81,7 @@ WithFullWidth.args = {
 
 export const Outlined = Template.bind({});
 Outlined.args = {
-  isOutlined: true,
+  variant: 'outlined',
 };
 
 export const Rounded = Template.bind({});
@@ -89,5 +92,5 @@ Rounded.args = {
 export const OutlinedAndRounded = Template.bind({});
 OutlinedAndRounded.args = {
   isRounded: true,
-  isOutlined: true,
+  variant: 'outlined',
 };

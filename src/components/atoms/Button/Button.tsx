@@ -9,12 +9,10 @@ import { ButtonProps } from './props';
 export const Button: React.FC<ButtonProps> = (props) => {
   const {
     size = 'md',
+    variant = 'filled',
     isFullWidth = false,
-    isLink = false,
     isRounded = false,
-    isOutlined = false,
     color = 'primary',
-    hasPadding = false,
     children,
     className,
     ...rest
@@ -25,29 +23,28 @@ export const Button: React.FC<ButtonProps> = (props) => {
   const defaultOutlinedStyles = 'border-2 border-current bg-transparent hover:bg-black hover:bg-opacity-5';
 
   const sizesStyles = {
+    xs: 'px-0.5 py-0.5',
     sm: 'px-4 py-1.5',
     md: 'px-6 py-2.5',
     lg: 'px-7 py-3',
   };
 
   const fonts = fontStyles[color];
-  const interactionColors = isLink ? linkIntStyles[color] : mainElIntStyles[color];
+  const interactionColors = variant === 'text' ? linkIntStyles[color] : mainElIntStyles[color];
 
   const buttonStyles = cn(sizesStyles[size], commonButtonStyles, {
-    [mainElStyles[color]]: !isOutlined,
-    [interactionColors]: !isOutlined,
-    [defaultOutlinedStyles]: isOutlined,
-    [fonts]: isOutlined,
+    [mainElStyles[color]]: variant !== 'outlined',
+    [interactionColors]: variant !== 'outlined',
+    [defaultOutlinedStyles]: variant === 'outlined',
+    [fonts]: variant === 'outlined',
     ['w-full']: isFullWidth,
     ['rounded-full']: isRounded,
   });
-  const linkStyles = cn(fonts, {
-    [sizesStyles[size]]: hasPadding,
-  });
+
   const classes = cn(
     {
-      [buttonStyles]: !isLink,
-      [linkStyles]: isLink,
+      [buttonStyles]: variant !== 'text',
+      'py-4': variant === 'text',
     },
     className,
   );
