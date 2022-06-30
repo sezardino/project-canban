@@ -20,7 +20,7 @@ class DemoService {
   }
 
   public async updateBoard(board: Board): Promise<Board> {
-    return await this.boardService.update(board);
+    return await this.boardService.update(board.id, board);
   }
 
   public async getBoard(boardId: string): Promise<Board> {
@@ -40,7 +40,7 @@ class DemoService {
   }
 
   public async updateColumn(column: Column): Promise<Column> {
-    return await this.columnService.update(column);
+    return await this.columnService.update(column.id, column);
   }
 
   public async getColumn(columnId: string): Promise<Column> {
@@ -55,8 +55,8 @@ class DemoService {
     return await this.cardService.add(title, columnId, boardId);
   }
 
-  public async updateCard(card: Card): Promise<Card> {
-    return await this.cardService.update(card);
+  public async updateCard(id: string, fields: Partial<Card>): Promise<Card> {
+    return await this.cardService.update(id, fields);
   }
 
   public async getCard(cardId: string): Promise<Card> {

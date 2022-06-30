@@ -1,14 +1,17 @@
-import { useDeferredValue, useEffect, useMemo } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useDeferredValue, useEffect, useMemo, useState } from 'react';
+import { useNavigate, useParams, useLocation, useSearchParams } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector, asyncActions } from '@/store';
-import { Button, KanbanBoard } from '@/components';
+import { useAppDispatch, useAppSelector, asyncActions, appActions } from '@/store';
+import { Button, CardModal, KanbanBoard, Modal } from '@/components';
 import { useUI } from '@/context';
 
 const KanbanPage = () => {
   const params = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const { addErrorToast, addInfoToast, addWarningToast } = useUI();
-  const { currentBoard, cards, columns, error, info, isLoading } = useAppSelector((state) => state.demoBoard);
+  const { currentBoard, selectedCard, cards, columns, error, info, isLoading } = useAppSelector(
+    (state) => state.demoBoard,
+  );
   const prevBoardValue = useDeferredValue(currentBoard);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -20,6 +23,30 @@ const KanbanPage = () => {
 
     dispatch(asyncActions.getBoard(params.id));
   }, []);
+
+  useEffect(() => {
+    if (!searchParams.has('task') || !cards.length) {
+      return;
+    }
+
+    const taskId = searchParams.get('task');
+
+    if (!cards.find((card) => card.id === taskId)) {
+      return navigate('/404');
+    }
+
+    dispatch(appActions.setSelectedCard(taskId));
+  }, [searchParams, cards]);
+
+  useEffect(() => {
+    if (selectedCard || !searchParams.has('task')) {
+      return;
+    }
+
+    searchParams.delete('task');
+
+    setSearchParams(searchParams);
+  }, [selectedCard]);
 
   useEffect(() => {
     if (!currentBoard && !isLoading) {
@@ -100,6 +127,7 @@ const KanbanPage = () => {
         </div>
       </header>
       <KanbanBoard columns={kanbanContent} className="px-10 h-full max-h-full overflow-auto" />
+      <CardModal cardId={selectedCard} />
     </div>
   );
 };

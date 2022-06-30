@@ -17,7 +17,7 @@ export class CardService extends AbstractService<Card> {
     const lastCardIndex = allCards.length ? allCards[allCards.length - 1].id.split('-')[1] : 0;
     const cardId = `${board}-${+lastCardIndex + 1}`;
 
-    const newCard = await this.client.add({ board, id: cardId, title, column });
+    const newCard = await this.client.add({ board, id: cardId, title, column, description: '', history: [] });
 
     return newCard;
   }

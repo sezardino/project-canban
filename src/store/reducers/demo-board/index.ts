@@ -6,6 +6,7 @@ import * as asyncActions from './actionCreators';
 
 interface DemoBoardState {
   currentBoard: Board | null;
+  selectedCard: string | null;
   cards: Card[];
   columns: Column[];
   isLoading: boolean;
@@ -15,6 +16,7 @@ interface DemoBoardState {
 
 const initialState: DemoBoardState = {
   currentBoard: {} as Board,
+  selectedCard: null,
   cards: [],
   columns: [],
   isLoading: false,
@@ -25,7 +27,11 @@ const initialState: DemoBoardState = {
 const boardSlice = createSlice({
   name: AppReducers.DEMO_BOARD,
   initialState,
-  reducers: {},
+  reducers: {
+    setSelectedCard: (state, action: PayloadAction<string | null>) => {
+      state.selectedCard = action.payload;
+    },
+  },
   extraReducers: {
     [asyncActions.getBoard.pending.type]: pendingAction,
     [asyncActions.getBoard.fulfilled.type]: (state, action: PayloadAction<Board>) => {

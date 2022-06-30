@@ -88,7 +88,6 @@ export const KanbanTemplate: React.FC<KanbanTemplateProps> = (props) => {
                 <Card
                   card={card}
                   className="relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-1"
-                  data-card
                   draggable
                   onDragStart={(evt) => cardDragStart(evt, card)}
                   onDrop={(evt) => onCardDrop(evt, card)}

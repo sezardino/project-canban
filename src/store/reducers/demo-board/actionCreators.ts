@@ -29,6 +29,11 @@ export const addCard = createAsyncThunk(
   },
 );
 
-export const updateCard = createAsyncThunk('demo-board/updateCard', async (card: Card) => {
-  return await demoService.updateCard(card);
+interface UpdateCardDto {
+  id: string;
+  fields: Partial<Card>;
+}
+
+export const updateCard = createAsyncThunk('demo-board/updateCard', async (args: UpdateCardDto) => {
+  return await demoService.updateCard(args.id, args.fields);
 });
